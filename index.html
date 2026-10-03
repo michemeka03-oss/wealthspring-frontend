@@ -15,42 +15,42 @@ body{font-family:Inter;background:#F6F8FB;color:#0B1A33}
 <body>
 <header class="bg-white border-b border-[#E6EBF2] px-6 md:px-10 py-4 flex justify-between items-center sticky top-0 z-[100]">
 <div class="flex items-center gap-6 md:gap-10">
-<div class="font-bold text-[18px] cursor-pointer" onclick="window.showPage('home')"><span class="bg-[#0B1A33] text-white w-7 h-7 inline-flex items-center justify-center rounded-[6px] mr-2">W</span>Wealthspring</div>
+<div class="font-bold text-[18px] cursor-pointer" onclick="showPage('home')"><span class="bg-[#0B1A33] text-white w-7 h-7 inline-flex items-center justify-center rounded-[6px] mr-2">W</span>Wealthspring</div>
 <nav class="hidden md:flex gap-8 text-[13px] font-medium text-[#5B6B86]">
-<button onclick="window.showPage('home')" id="n-home" class="nav-active">Home</button>
-<button onclick="window.showPage('investments')" id="n-investments">Investment Plans</button>
-<button onclick="window.showPage('faq')" id="n-faq">FAQ</button>
-<button onclick="window.showPage('support')" id="n-support">Support</button>
+<button onclick="showPage('home')" id="n-home" class="nav-active">Home</button>
+<button onclick="showPage('investments')" id="n-investments">Investment Plans</button>
+<button onclick="showPage('faq')" id="n-faq">FAQ</button>
+<button onclick="showPage('support')" id="n-support">Support</button>
 </nav>
 </div>
 <div id="authOut" class="flex gap-2 items-center">
-<button onclick="window.showPage('login')" class="px-4 py-2 text-[13px]">Log in</button>
-<button onclick="window.showPage('login')" class="px-5 py-2.5 bg-[#0B1A33] text-white rounded-full text-[13px] font-semibold">Get Started</button>
+<button onclick="showPage('login')" class="px-4 py-2 text-[13px]">Log in</button>
+<button onclick="showPage('register')" class="px-5 py-2.5 bg-[#0B1A33] text-white rounded-full text-[13px] font-semibold">Get Started</button>
 </div>
 <div id="authIn" class="hidden items-center gap-4">
-<div class="text-right hidden md:block"><div id="userEmail" class="text-[11px] text-[#5B6B86]"></div><div id="userBal" class="text-[14px] font-semibold">$0.00</div></div>
-<button onclick="window.showPage('dashboard')" class="px-4 py-2 bg-[#0B1A33] text-white rounded-full text-[12px]">Dashboard</button>
-<button onclick="window.logout()" class="text-[12px] text-[#5B6B86]">Log out</button>
+<div class="text-right hidden md:block"><div id="userName" class="text-[13px] font-semibold"></div><div id="userBal" class="text-[12px] text-[#5B6B86]">$0.00</div></div>
+<button onclick="showPage('dashboard')" class="px-4 py-2 bg-[#0B1A33] text-white rounded-full text-[12px]">Dashboard</button>
+<button onclick="logout()" class="text-[12px] text-[#5B6B86]">Log out</button>
 </div>
 </header>
 
-<!-- MOBILE NAV -->
 <div class="md:hidden bg-white border-b px-6 py-3 flex gap-5 text-[12px] text-[#5B6B86] overflow-auto">
-<button onclick="window.showPage('home')" id="m-home" class="nav-active whitespace-nowrap">Home</button>
-<button onclick="window.showPage('investments')" id="m-investments" class="whitespace-nowrap">Investment Plans</button>
-<button onclick="window.showPage('faq')" id="m-faq" class="whitespace-nowrap">FAQ</button>
-<button onclick="window.showPage('support')" id="m-support" class="whitespace-nowrap">Support</button>
+<button onclick="showPage('home')" id="m-home" class="nav-active whitespace-nowrap">Home</button>
+<button onclick="showPage('investments')" id="m-investments" class="whitespace-nowrap">Plans</button>
+<button onclick="showPage('dashboard')" id="m-dashboard" class="whitespace-nowrap">Dashboard</button>
+<button onclick="showPage('faq')" id="m-faq" class="whitespace-nowrap">FAQ</button>
+<button onclick="showPage('support')" id="m-support" class="whitespace-nowrap">Support</button>
 </div>
 
 <div id="page-home" class="page active">
-<section class="max-w-[1180px] mx-auto px-6 md:px-10 py-10 md:py-20 grid md:grid-cols-12 gap-8">
+<section class="max-w-[1180px] mx-auto px-6 md:px-10 py-14 md:py-20 grid md:grid-cols-12 gap-12">
 <div class="md:col-span-7">
 <div class="inline-flex px-3 py-1 bg-[#E6F9F0] border rounded-full text-[11px]">● SEC-Registered • SIPC Insured • SSL Secured</div>
 <h1 class="serif text-[48px] md:text-[72px] leading-[0.9] mt-6">Secure your<br>financial future,<br><span class="italic text-[#5B6B86]">without the noise.</span></h1>
 <p class="mt-6 text-[#5B6B86] max-w-[480px] text-[15px]">Private wealth platform for disciplined investors. Fixed-income, transparent fees, audited reserves.</p>
 <div class="mt-8 flex gap-3">
-<button onclick="window.showPage('investments')" class="px-7 py-3.5 bg-[#0B1A33] text-white rounded-full text-[14px] font-medium">View Investment Plans</button>
-<button onclick="window.showPage('support')" class="px-7 py-3.5 bg-white border rounded-full text-[14px]">Speak to advisor</button>
+<button onclick="showPage('investments')" class="px-7 py-3.5 bg-[#0B1A33] text-white rounded-full text-[14px] font-medium">View Investment Plans</button>
+<button onclick="showPage('support')" class="px-7 py-3.5 bg-white border rounded-full text-[14px]">Speak to advisor</button>
 </div>
 </div>
 <div class="md:col-span-5">
@@ -58,7 +58,7 @@ body{font-family:Inter;background:#F6F8FB;color:#0B1A33}
 <div class="grid grid-cols-2 gap-6">
 <div><div class="text-[11px] text-[#5B6B86] uppercase">AUM</div><div class="serif text-[24px] mt-1">$47M+</div></div>
 <div><div class="text-[11px] text-[#5B6B86] uppercase">Investors</div><div class="serif text-[24px] mt-1">2,400+</div></div>
-<div><div class="text-[11px] text-[#5B6B86] uppercase">Uptime</div><div class="serif text-[24px] mt-1">98.7%</div></div>
+<div><div class="text-[11px] text-[#5B6B86] uppercase">Uptime</div><div class="serif text-[24px] mt-1">99.9%</div></div>
 <div><div class="text-[11px] text-[#5B6B86] uppercase">Security</div><div class="serif text-[24px] mt-1">Bank-Grade</div></div>
 </div>
 </div>
@@ -68,123 +68,191 @@ body{font-family:Inter;background:#F6F8FB;color:#0B1A33}
 
 <div id="page-investments" class="page">
 <div class="max-w-[1180px] mx-auto px-6 md:px-10 py-10 md:py-16">
-<h2 class="serif text-[40px] md:text-[48px]">Investment Plans</h2><p class="mt-3 text-[#5B6B86]">Fixed APY, paid at term. Separate page as you requested.</p>
-<div class="mt-10 grid md:grid-cols-3 gap-6">
-<div class="bg-white rounded-[20px] border p-7"><div class="text-[11px] uppercase tracking-widest text-[#5B6B86]">Starter</div><div class="serif text-[28px] mt-2">$100 — $499</div><div class="mt-3 px-3 py-1.5 bg-[#F1F4F9] rounded-full text-[12px] inline-block">5% APY • 30 Days</div><button onclick="window.openDeposit(100)" class="mt-8 w-full py-3.5 bg-[#0B1A33] text-white rounded-full font-medium">Invest — Starter</button></div>
-<div class="bg-[#0B1A33] text-white rounded-[20px] p-7"><div class="text-[11px] uppercase tracking-widest opacity-60">Growth — Most Popular</div><div class="serif text-[28px] mt-2">$500 — $1,999</div><div class="mt-3 px-3 py-1.5 bg-white/10 rounded-full text-[12px] inline-block">8% APY • 60 Days</div><button onclick="window.openDeposit(500)" class="mt-8 w-full py-3.5 bg-white text-[#0B1A33] rounded-full font-medium">Invest — Growth</button></div>
-<div class="bg-white rounded-[20px] border p-7"><div class="text-[11px] uppercase tracking-widest text-[#5B6B86]">Pro & Elite</div><div class="serif text-[28px] mt-2">$2,000+</div><div class="mt-3 px-3 py-1.5 bg-[#F1F4F9] rounded-full text-[12px] inline-block">12-18% APY • 90 Days</div><button onclick="window.openDeposit(2000)" class="mt-8 w-full py-3.5 bg-[#0B1A33] text-white rounded-full font-medium">Invest — Pro</button></div>
+<h2 class="serif text-[40px] md:text-[48px]">Investment Plans</h2>
+<p class="mt-3 text-[#5B6B86] text-[14px]">Fixed APY, paid at term. Custom amounts allowed $100 — $50,000.</p>
+<div class="mt-10 grid md:grid-cols-3 gap-5">
+<div class="bg-white rounded-[18px] border p-7"><div class="text-[11px] uppercase tracking-widest text-[#5B6B86]">Starter</div><div class="serif text-[28px] mt-2">$100 — $249</div><div class="mt-3 px-3 py-1.5 bg-[#F1F4F9] rounded-full text-[12px] inline-block">5% APY • 30 Days</div><button onclick="openDeposit(100)" class="mt-8 w-full py-3.5 bg-[#0B1A33] text-white rounded-full font-medium">Invest — $100</button></div>
+<div class="bg-white rounded-[18px] border p-7"><div class="text-[11px] uppercase tracking-widest text-[#5B6B86]">Basic</div><div class="serif text-[28px] mt-2">$250 — $499</div><div class="mt-3 px-3 py-1.5 bg-[#F1F4F9] rounded-full text-[12px] inline-block">6% APY • 45 Days</div><button onclick="openDeposit(250)" class="mt-8 w-full py-3.5 bg-[#0B1A33] text-white rounded-full font-medium">Invest — $250</button></div>
+<div class="bg-[#0B1A33] text-white rounded-[18px] p-7"><div class="text-[11px] uppercase tracking-widest opacity-60">Growth — Most Popular</div><div class="serif text-[28px] mt-2">$500 — $999</div><div class="mt-3 px-3 py-1.5 bg-white/10 rounded-full text-[12px] inline-block">8% APY • 60 Days</div><button onclick="openDeposit(500)" class="mt-8 w-full py-3.5 bg-white text-[#0B1A33] rounded-full font-medium">Invest — $500</button></div>
+<div class="bg-white rounded-[18px] border p-7"><div class="text-[11px] uppercase tracking-widest text-[#5B6B86]">Advanced</div><div class="serif text-[28px] mt-2">$1,000 — $2,499</div><div class="mt-3 px-3 py-1.5 bg-[#F1F4F9] rounded-full text-[12px] inline-block">10% APY • 75 Days</div><button onclick="openDeposit(1000)" class="mt-8 w-full py-3.5 bg-[#0B1A33] text-white rounded-full font-medium">Invest — $1,000</button></div>
+<div class="bg-white rounded-[18px] border p-7"><div class="text-[11px] uppercase tracking-widest text-[#5B6B86]">Pro</div><div class="serif text-[28px] mt-2">$2,500 — $4,999</div><div class="mt-3 px-3 py-1.5 bg-[#F1F4F9] rounded-full text-[12px] inline-block">12% APY • 90 Days</div><button onclick="openDeposit(2500)" class="mt-8 w-full py-3.5 bg-[#0B1A33] text-white rounded-full font-medium">Invest — $2,500</button></div>
+<div class="bg-white rounded-[18px] border-2 border-[#0B1A33] p-7"><div class="text-[11px] uppercase tracking-widest text-[#5B6B86]">Elite</div><div class="serif text-[28px] mt-2">$5,000+</div><div class="mt-3 px-3 py-1.5 bg-[#F1F4F9] rounded-full text-[12px] inline-block">18% APY • 120 Days</div><button onclick="openDeposit(5000)" class="mt-8 w-full py-3.5 bg-[#0B1A33] text-white rounded-full font-medium">Invest — $5,000+</button></div>
 </div>
+<div class="mt-8 bg-white border rounded-[16px] p-5 flex flex-col md:flex-row gap-3 items-center"><div class="text-[13px] font-medium">Custom Amount:</div><input id="customAmt" type="number" placeholder="Enter any amount $100-$50000" class="flex-1 w-full border p-3 rounded-full text-[13px]"><button onclick="openCustom()" class="px-6 py-3 bg-[#0B1A33] text-white rounded-full text-[13px] w-full md:w-auto">Continue</button></div>
 </div>
 </div>
 
-<div id="page-dashboard" class="page"><div class="max-w-[900px] mx-auto px-6 py-10"><div class="bg-white rounded-[16px] border p-6 flex justify-between"><div><h2 class="serif text-[28px]">Dashboard</h2><div id="dashEmail" class="text-[12px] text-[#5B6B86]"></div></div><div class="text-right"><div class="text-[11px] uppercase">Available Balance</div><div id="balDisplay" class="serif text-[28px]">$0.00</div></div></div><div class="mt-6 grid md:grid-cols-3 gap-4"><div class="bg-white p-5 rounded-xl border cursor-pointer" onclick="window.openDeposit(100)">Starter — $100</div><div class="bg-white p-5 rounded-xl border-2 border-[#0B1A33] cursor-pointer" onclick="window.openDeposit(500)">Growth — $500</div><div class="bg-white p-5 rounded-xl border cursor-pointer" onclick="window.openDeposit(2000)">Pro — $2000</div></div></div></div>
-<div id="page-faq" class="page max-w-[800px] mx-auto px-6 py-12"><h2 class="serif text-[40px]">FAQ</h2><div class="mt-8 space-y-4"><div class="bg-white p-6 rounded-[14px] border"><b>Minimum deposit?</b><p class="text-[13px] text-[#5B6B86] mt-2">$100 minimum.</p></div><div class="bg-white p-6 rounded-[14px] border"><b>Withdrawal?</b><p class="text-[13px] text-[#5B6B86] mt-2">Paid at end of term.</p></div></div></div>
-<div id="page-support" class="page max-w-[800px] mx-auto px-6 py-12"><h2 class="serif text-[40px]">Support</h2><p class="mt-3 text-[#5B6B86]">support@wealthsprings.com</p><div class="mt-8 bg-white p-8 rounded-[16px] border">For deposit issues include TX ID. Response within 2 hours.</div></div>
-<div id="page-login" class="page max-w-[440px] mx-auto px-6 py-12"><div class="bg-white p-8 rounded-[20px] border"><h2 class="serif text-[32px]">Welcome back</h2><input id="email" placeholder="Email" class="mt-6 w-full border p-3.5 rounded-full text-[14px]"><input id="password" type="password" placeholder="Password" class="mt-3 w-full border p-3.5 rounded-full text-[14px]"><button onclick="window.handleAuth('login')" class="mt-6 w-full py-3.5 bg-[#0B1A33] text-white rounded-full">Log in</button><button onclick="window.handleAuth('register')" class="mt-3 w-full py-3.5 bg-white border rounded-full">Create account</button><p id="authMsg" class="text-[12px] mt-4 text-red-500"></p></div></div>
+<div id="page-dashboard" class="page"><div class="max-w-[900px] mx-auto px-6 py-8">
+<div class="bg-white rounded-[16px] border p-6 flex justify-between items-center"><div><h2 class="serif text-[28px]">Dashboard</h2><div id="dashEmail" class="text-[12px] text-[#5B6B86]"></div></div><div class="text-right"><div class="text-[10px] uppercase tracking-widest">Available Balance</div><div id="balDisplay" class="serif text-[30px]">$0.00</div><div class="mt-3 flex gap-2 justify-end"><button onclick="openDeposit(500)" class="px-5 py-2.5 bg-[#0B1A33] text-white rounded-full text-[12px]">Deposit</button><button onclick="openWithdraw()" class="px-5 py-2.5 bg-white border rounded-full text-[12px]">Withdraw</button></div></div></div>
+<div class="mt-6 bg-white rounded-[16px] border p-6"><h3 class="font-semibold text-[14px]">Transaction History</h3><div id="txList" class="mt-4 space-y-3"><div class="text-[13px] text-[#5B6B86]">No transactions yet. Your deposits will appear here as Processing.</div></div></div>
+<div class="mt-6 grid grid-cols-3 gap-3"><div class="bg-white border p-4 rounded-xl"><div class="text-[11px] text-[#5B6B86]">TOTAL DEPOSITED</div><div id="totalDep" class="font-semibold mt-1">$0</div></div><div class="bg-white border p-4 rounded-xl"><div class="text-[11px] text-[#5B6B86]">PENDING</div><div id="pendingDep" class="font-semibold mt-1">$0</div></div><div class="bg-white border p-4 rounded-xl"><div class="text-[11px] text-[#5B6B86]">PROFIT</div><div class="font-semibold mt-1 text-green-600">$0</div></div></div>
+</div></div>
+
+<div id="page-faq" class="page max-w-[700px] mx-auto px-6 py-12"><h2 class="serif text-[40px]">FAQ</h2><div class="mt-8 space-y-3"><div class="bg-white border p-6 rounded-xl"><b>Minimum deposit?</b><p class="text-[13px] text-[#5B6B86] mt-2">$100 minimum, custom amounts allowed.</p></div><div class="bg-white border p-6 rounded-xl"><b>When can I withdraw?</b><p class="text-[13px] text-[#5B6B86] mt-2">After term ends. Early withdrawal on request.</p></div></div></div>
+<div id="page-support" class="page max-w-[700px] mx-auto px-6 py-12"><h2 class="serif text-[40px]">Support</h2><div class="mt-6 bg-white border p-8 rounded-xl text-[13px] text-[#5B6B86]">support@wealthsprings.com • Include TX ID • Response within 2 hours.</div></div>
+
+<div id="page-login" class="page max-w-[440px] mx-auto px-6 py-12">
+<div class="bg-white border p-8 rounded-[20px]">
+<h2 class="serif text-[32px]">Welcome back</h2><p class="text-[13px] text-[#5B6B86] mt-2">Log in to your wealth account</p>
+<input id="email" placeholder="Email address" class="mt-6 w-full border p-3.5 rounded-full text-[14px]">
+<input id="password" type="password" placeholder="Password" class="mt-3 w-full border p-3.5 rounded-full text-[14px]">
+<button onclick="handleAuth('login')" class="mt-6 w-full py-3.5 bg-[#0B1A33] text-white rounded-full">Log in</button>
+<p class="text-[13px] text-center mt-4 text-[#5B6B86]">Don't have an account? <button onclick="showPage('register')" class="text-[#0B1A33] font-semibold underline">Create account</button></p>
+<p id="authMsg" class="text-[12px] mt-3 text-center text-red-500"></p>
+</div>
+</div>
+
+<div id="page-register" class="page max-w-[440px] mx-auto px-6 py-12">
+<div class="bg-white border p-8 rounded-[20px]">
+<h2 class="serif text-[32px]">Create account</h2><p class="text-[13px] text-[#5B6B86] mt-2">Start your private wealth journey</p>
+<input id="regEmail" placeholder="Email address" class="mt-6 w-full border p-3.5 rounded-full text-[14px]">
+<input id="regPassword" type="password" placeholder="Password (min 6 characters)" class="mt-3 w-full border p-3.5 rounded-full text-[14px]">
+<input id="regConfirm" type="password" placeholder="Repeat password" class="mt-3 w-full border p-3.5 rounded-full text-[14px]">
+<div class="mt-4 flex gap-2 items-start"><input type="checkbox" id="agree" class="mt-1"><label for="agree" class="text-[11px] text-[#5B6B86]">I agree to Terms & Privacy Policy and confirm I am 18+</label></div>
+<button onclick="handleRegister()" class="mt-5 w-full py-3.5 bg-[#0B1A33] text-white rounded-full">Create Account</button>
+<p class="text-[13px] text-center mt-4 text-[#5B6B86]">Already have an account? <button onclick="showPage('login')" class="text-[#0B1A33] font-semibold underline">Log in</button></p>
+<p id="regMsg" class="text-[12px] mt-3 text-center"></p>
+</div>
+</div>
 
 <div id="depositModal" class="fixed inset-0 bg-[#0B1A33]/60 backdrop-blur-[4px] hidden z-[200] flex items-center justify-center p-4">
 <div class="bg-white rounded-[20px] max-w-[460px] w-full p-7 max-h-[90vh] overflow-auto">
-<div class="flex justify-between"><h3 class="font-semibold">Confirm Deposit</h3><button onclick="window.closeDeposit()" class="w-8 h-8 bg-[#F1F4F9] rounded-full">✕</button></div>
+<div class="flex justify-between"><h3 class="font-semibold">Confirm Deposit</h3><button onclick="closeDeposit()" class="w-8 h-8 bg-[#F1F4F9] rounded-full">✕</button></div>
 <div class="mt-5"><label class="text-[11px] uppercase font-semibold">Amount</label><input id="depAmount" type="number" class="mt-2 w-full border p-3.5 rounded-full font-semibold" value="500"><div id="estROI" class="text-[12px] text-[#00C27A] mt-2"></div></div>
 <div class="mt-6 p-4 bg-[#F6F8FB] rounded-[14px] border">
 <div class="text-[11px] font-semibold uppercase">Step 1 — Send to this address</div>
 <div class="mt-3 space-y-3">
-<div class="bg-white p-3.5 rounded-[12px] border flex justify-between items-center gap-2"><div class="flex gap-3 items-center min-w-0"><img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=026" class="w-8 h-8 shrink-0"><div class="min-w-0"><div class="text-[11px] font-bold">BTC <span class="font-normal text-[#5B6B86]">Bitcoin</span></div><div id="btcAddr" class="text-[10px] font-mono break-all">bc1qmmw3778u3w409wjthpp5gyqjxj9fesqcq8maez</div></div></div><button onclick="window.copyWallet('btcAddr')" class="shrink-0 px-3 py-2 bg-[#0B1A33] text-white rounded-full text-[11px]">Copy</button></div>
-<div class="bg-white p-3.5 rounded-[12px] border flex justify-between items-center gap-2"><div class="flex gap-3 items-center min-w-0"><img src="https://cryptologos.cc/logos/tether-usdt-logo.svg?v=026" class="w-8 h-8 shrink-0"><div class="min-w-0"><div class="text-[11px] font-bold">USDT <span class="font-normal text-[#5B6B86]">BEP20</span></div><div id="usdtAddr" class="text-[10px] font-mono break-all">0xcF1e36b4c1666f42F34A8616FAe80Fc30440F8D9</div></div></div><button onclick="window.copyWallet('usdtAddr')" class="shrink-0 px-3 py-2 bg-[#0B1A33] text-white rounded-full text-[11px]">Copy</button></div>
+<div class="bg-white p-3.5 rounded-[12px] border flex justify-between items-center gap-2"><div class="flex gap-3 items-center min-w-0"><img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=026" class="w-8 h-8 shrink-0"><div class="min-w-0"><div class="text-[11px] font-bold">BTC <span class="font-normal text-[#5B6B86]">Bitcoin</span></div><div id="btcAddr" class="text-[10px] font-mono break-all">bc1qmmw3778u3w409wjthpp5gyqjxj9fesqcq8maez</div></div></div><button onclick="copyWallet('btcAddr')" class="shrink-0 px-3 py-2 bg-[#0B1A33] text-white rounded-full text-[11px]">Copy</button></div>
+<div class="bg-white p-3.5 rounded-[12px] border flex justify-between items-center gap-2"><div class="flex gap-3 items-center min-w-0"><img src="https://cryptologos.cc/logos/tether-usdt-logo.svg?v=026" class="w-8 h-8 shrink-0"><div class="min-w-0"><div class="text-[11px] font-bold">USDT <span class="font-normal text-[#5B6B86]">BEP20</span></div><div id="usdtAddr" class="text-[10px] font-mono break-all">0xcF1e36b4c1666f42F34A8616FAe80Fc30440F8D9</div></div></div><button onclick="copyWallet('usdtAddr')" class="shrink-0 px-3 py-2 bg-[#0B1A33] text-white rounded-full text-[11px]">Copy</button></div>
+</div>
+<div class="mt-2 text-[10px] text-[#5B6B86]">⚠️ Send only via correct network.</div>
+</div>
+<div class="mt-5"><label class="text-[11px] uppercase font-semibold">Step 2 — TX ID / Hash</label><input id="txId" placeholder="Paste transaction hash" class="mt-2 w-full border p-3.5 rounded-full text-[13px]"><button onclick="submitDeposit()" class="mt-4 w-full py-3.5 bg-[#0B1A33] text-white rounded-full">I have sent — Confirm</button><p id="depMsg" class="text-[12px] mt-3 text-center"></p></div>
 </div>
 </div>
-<div class="mt-5"><label class="text-[11px] uppercase font-semibold">Step 2 — TX ID</label><input id="txId" placeholder="Paste TX hash" class="mt-2 w-full border p-3.5 rounded-full text-[13px]"><button onclick="window.submitDeposit()" class="mt-4 w-full py-3.5 bg-[#0B1A33] text-white rounded-full">I have sent — Confirm</button><p id="depMsg" class="text-[12px] mt-3 text-center"></p></div>
-</div>
+
+<div id="withdrawModal" class="fixed inset-0 bg-[#0B1A33]/60 hidden z-[200] flex items-center justify-center p-4">
+<div class="bg-white rounded-[20px] max-w-[420px] w-full p-7"><div class="flex justify-between"><h3 class="font-semibold">Withdraw Funds</h3><button onclick="closeWithdraw()" class="w-8 h-8 bg-[#F1F4F9] rounded-full">✕</button></div><input id="wdAmount" type="number" placeholder="Amount to withdraw" class="mt-6 w-full border p-3.5 rounded-full"><input id="wdAddress" placeholder="Your BTC or USDT address" class="mt-3 w-full border p-3.5 rounded-full"><button onclick="submitWithdraw()" class="mt-4 w-full py-3.5 bg-[#0B1A33] text-white rounded-full">Request Withdrawal</button><p id="wdMsg" class="text-[12px] mt-3 text-center"></p></div>
 </div>
 
 <script>
 const API='https://wealthspring-backend.onrender.com';
 let currentUser=localStorage.getItem('ws_email')||'';
 
-window.showPage = function(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  const target=document.getElementById('page-'+id);
-  if(target) target.classList.add('active');
-  document.querySelectorAll('[id^="n-"],[id^="m-"]').forEach(n=>n.classList.remove('nav-active'));
-  const n1=document.getElementById('n-'+id); if(n1) n1.classList.add('nav-active');
-  const n2=document.getElementById('m-'+id); if(n2) n2.classList.add('nav-active');
-  window.scrollTo(0,0);
+function showPage(id){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ const t=document.getElementById('page-'+id); if(t) t.classList.add('active');
+ document.querySelectorAll('[id^="n-"],[id^="m-"]').forEach(n=>n.classList.remove('nav-active'));
+ const n1=document.getElementById('n-'+id); if(n1) n1.classList.add('nav-active');
+ const n2=document.getElementById('m-'+id); if(n2) n2.classList.add('nav-active');
+ window.scrollTo(0,0);
+ if(id==='dashboard') renderTx();
 }
-window.updateHeader = function(){
-  const out=document.getElementById('authOut');
-  const inn=document.getElementById('authIn');
-  if(currentUser){
-    if(out) out.classList.add('hidden');
-    if(inn){ inn.classList.remove('hidden'); inn.classList.add('flex'); }
-    const ue=document.getElementById('userEmail'); if(ue) ue.innerText=currentUser;
-    const de=document.getElementById('dashEmail'); if(de) de.innerText=currentUser;
-    window.fetchBalance();
-  }else{
-    if(out) out.classList.remove('hidden');
-    if(inn){ inn.classList.add('hidden'); inn.classList.remove('flex'); }
-  }
+function updateHeader(){
+ const out=document.getElementById('authOut'), inn=document.getElementById('authIn');
+ if(currentUser){
+  if(out) out.classList.add('hidden');
+  if(inn){ inn.classList.remove('hidden'); inn.classList.add('flex'); }
+  const shortName=currentUser.split('@')[0];
+  document.getElementById('userName').innerText=shortName;
+  document.getElementById('dashEmail').innerText=currentUser;
+  fetchBalance(); renderTx();
+ }else{
+  if(out) out.classList.remove('hidden');
+  if(inn){ inn.classList.add('hidden'); inn.classList.remove('flex'); }
+ }
 }
-window.copyWallet = function(id){
-  const el=document.getElementById(id);
-  if(!el) return;
-  navigator.clipboard.writeText(el.innerText).then(()=>alert('Copied: '+el.innerText));
+function copyWallet(id){ const el=document.getElementById(id); navigator.clipboard.writeText(el.innerText).then(()=>alert('Address copied')); }
+function openDeposit(amt){ if(!currentUser){ showPage('register'); return; } document.getElementById('depAmount').value=amt; updateROI(); document.getElementById('depositModal').classList.remove('hidden'); }
+function openCustom(){ const v=parseFloat(document.getElementById('customAmt').value); if(!v||v<100){ alert('Minimum $100'); return; } openDeposit(v); }
+function closeDeposit(){ document.getElementById('depositModal').classList.add('hidden'); }
+function openWithdraw(){ if(!currentUser){ showPage('login'); return; } document.getElementById('withdrawModal').classList.remove('hidden'); }
+function closeWithdraw(){ document.getElementById('withdrawModal').classList.add('hidden'); }
+function updateROI(){ const el=document.getElementById('depAmount'), out=document.getElementById('estROI'); if(!el||!out) return; let a=parseFloat(el.value)||0; let r=a>=5000?18:a>=2500?12:a>=1000?10:a>=500?8:a>=250?6:5; out.innerText=`Est. Profit: $${(a*r/100).toFixed(2)} at ${r}% APY`; }
+
+async function handleRegister(){
+ const email=document.getElementById('regEmail').value.trim();
+ const pass=document.getElementById('regPassword').value.trim();
+ const confirm=document.getElementById('regConfirm').value.trim();
+ const agree=document.getElementById('agree').checked;
+ const msg=document.getElementById('regMsg');
+ if(!email||!pass||!confirm){ msg.style.color='red'; msg.innerText='Fill all fields'; return; }
+ if(pass.length<6){ msg.style.color='red'; msg.innerText='Password must be at least 6 characters'; return; }
+ if(pass!==confirm){ msg.style.color='red'; msg.innerText='Passwords do not match'; return; }
+ if(!agree){ msg.style.color='red'; msg.innerText='You must agree to Terms'; return; }
+ msg.style.color='#5B6B86'; msg.innerText='Creating account...';
+ try{
+  const res=await fetch(API+'/api/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password:pass})});
+  const d=await res.json();
+  if(res.ok){
+   msg.style.color='green'; msg.innerText='Account created! Opening dashboard...';
+   currentUser=email; localStorage.setItem('ws_email',email);
+   localStorage.setItem('ws_tx_'+email, JSON.stringify([]));
+   setTimeout(()=>{ updateHeader(); showPage('dashboard'); msg.innerText=''; },1200);
+  }else{ msg.style.color='red'; msg.innerText=d.message||'Email already exists'; }
+ }catch{ msg.style.color='red'; msg.innerText='Backend waking up, retry in 20s'; }
 }
-window.openDeposit = function(amt){
-  if(!currentUser){ window.showPage('login'); const m=document.getElementById('authMsg'); if(m) m.innerText='Log in to invest'; return; }
-  const a=document.getElementById('depAmount'); if(a) a.value=amt;
-  window.updateROI();
-  document.getElementById('depositModal').classList.remove('hidden');
+
+async function handleAuth(type){
+ const email=document.getElementById('email').value.trim(), password=document.getElementById('password').value.trim();
+ const msg=document.getElementById('authMsg');
+ if(!email||!password){ msg.innerText='Enter email & password'; return; }
+ msg.innerText='Processing...';
+ try{
+  const res=await fetch(API+'/api/'+type,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});
+  const d=await res.json();
+  if(res.ok){ currentUser=email; localStorage.setItem('ws_email',email); updateHeader(); showPage('dashboard'); msg.innerText=''; }
+  else msg.innerText=d.message||'Failed';
+ }catch{ msg.innerText='Backend waking up, retry in 20s'; }
 }
-window.closeDeposit = function(){ document.getElementById('depositModal').classList.add('hidden'); }
-window.updateROI = function(){
-  const el=document.getElementById('depAmount'); const out=document.getElementById('estROI');
-  if(!el||!out) return;
-  let a=parseFloat(el.value)||0; let r=a>=5000?18:a>=2000?12:a>=500?8:5;
-  out.innerText=`Estimated: $${(a*r/100).toFixed(2)} at ${r}% APY`;
+async function fetchBalance(){ if(!currentUser) return; try{ const r=await fetch(API+'/api/balance?email='+encodeURIComponent(currentUser)); const d=await r.json(); const b=d.balance||0; document.getElementById('balDisplay').innerText='$'+b.toFixed(2); document.getElementById('userBal').innerText='$'+b.toFixed(2); }catch{} }
+
+function renderTx(){
+ const list=document.getElementById('txList'); if(!list) return;
+ const txs=JSON.parse(localStorage.getItem('ws_tx_'+currentUser)||'[]');
+ if(txs.length===0){ list.innerHTML='<div class="text-[13px] text-[#5B6B86]">No transactions yet. Your deposits will appear here as Processing.</div>'; document.getElementById('totalDep').innerText='$0'; document.getElementById('pendingDep').innerText='$0'; return; }
+ let total=0, pending=0;
+ list.innerHTML=txs.map(tx=>{
+  total+=tx.type==='Deposit'?tx.amount:0; if(tx.status==='pending'&&tx.type==='Deposit') pending+=tx.amount;
+  const color=tx.status==='pending'?'bg-yellow-100 text-yellow-700 border border-yellow-200':'bg-green-100 text-green-700 border border-green-200';
+  const label=tx.status==='pending'?'Processing • Pending Approval':'Approved • Completed';
+  return `<div class="border rounded-xl p-4 flex justify-between items-center"><div><div class="font-semibold text-[13px]">$${tx.amount} — ${tx.type}</div><div class="text-[11px] text-[#5B6B86] mt-1 break-all">TX: ${tx.txId.substring(0,25)}...</div><div class="text-[10px] mt-1 text-[#5B6B86]">${tx.date}</div></div><div class="px-3 py-1 rounded-full text-[10px] ${color}">${label}</div></div>`;
+ }).join('');
+ document.getElementById('totalDep').innerText='$'+total;
+ document.getElementById('pendingDep').innerText='$'+pending;
 }
-window.handleAuth = async function(type){
-  const email=document.getElementById('email')?.value.trim();
-  const password=document.getElementById('password')?.value.trim();
-  const msg=document.getElementById('authMsg');
-  if(!email||!password){ if(msg) msg.innerText='Enter email & password'; return; }
-  if(msg) msg.innerText='Processing...';
-  try{
-    const res=await fetch(API+'/api/'+type,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});
-    const d=await res.json();
-    if(res.ok){ currentUser=email; localStorage.setItem('ws_email',email); window.updateHeader(); window.showPage('dashboard'); if(msg) msg.innerText=''; }
-    else { if(msg) msg.innerText=d.message||'Failed'; }
-  }catch{ if(msg) msg.innerText='Backend waking up, wait 20s and retry'; }
+
+async function submitDeposit(){
+ const amount=parseFloat(document.getElementById('depAmount').value);
+ const tx=document.getElementById('txId').value.trim();
+ const msg=document.getElementById('depMsg');
+ if(!tx){ msg.innerText='Paste your transaction hash'; return; }
+ msg.innerText='Submitting...';
+ const newTx={amount,type:'Deposit',txId:tx,status:'pending',date:new Date().toLocaleString()};
+ const key='ws_tx_'+currentUser; const arr=JSON.parse(localStorage.getItem(key)||'[]'); arr.unshift(newTx); localStorage.setItem(key, JSON.stringify(arr)); renderTx();
+ try{ await fetch(API+'/api/deposit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:currentUser,amount,txId:tx})}); }catch{}
+ msg.style.color='green'; msg.innerText='Deposit submitted! Status: Processing — you can track it in Dashboard.';
+ setTimeout(()=>{ closeDeposit(); showPage('dashboard'); msg.innerText=''; msg.style.color=''; document.getElementById('txId').value=''; },2000);
 }
-window.fetchBalance = async function(){
-  if(!currentUser) return;
-  try{
-    const r=await fetch(API+'/api/balance?email='+encodeURIComponent(currentUser));
-    const d=await r.json(); const b=d.balance||0;
-    const bd=document.getElementById('balDisplay'); if(bd) bd.innerText='$'+b.toFixed(2);
-    const ub=document.getElementById('userBal'); if(ub) ub.innerText='$'+b.toFixed(2);
-  }catch{}
+
+async function submitWithdraw(){
+ const amount=parseFloat(document.getElementById('wdAmount').value);
+ const addr=document.getElementById('wdAddress').value.trim();
+ const msg=document.getElementById('wdMsg');
+ if(!amount||!addr){ msg.innerText='Enter amount and address'; return; }
+ msg.innerText='Submitting...';
+ const newTx={amount,type:'Withdrawal',txId:addr,status:'pending',date:new Date().toLocaleString()};
+ const key='ws_tx_'+currentUser; const arr=JSON.parse(localStorage.getItem(key)||'[]'); arr.unshift(newTx); localStorage.setItem(key, JSON.stringify(arr)); renderTx();
+ try{ await fetch(API+'/api/withdraw',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:currentUser,amount,address:addr})}); }catch{}
+ msg.style.color='green'; msg.innerText='Withdrawal request submitted — Processing.';
+ setTimeout(()=>{ closeWithdraw(); showPage('dashboard'); msg.innerText=''; },2000);
 }
-window.submitDeposit = async function(){
-  const amount=parseFloat(document.getElementById('depAmount')?.value);
-  const tx=document.getElementById('txId')?.value.trim();
-  const msg=document.getElementById('depMsg');
-  if(!tx){ if(msg) msg.innerText='Enter TX ID'; return; }
-  if(msg) msg.innerText='Submitting...';
-  try{
-    const res=await fetch(API+'/api/deposit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:currentUser,amount,txId:tx})});
-    const d=await res.json();
-    if(res.ok){ if(msg) msg.innerText='Submitted! Admin will approve. Email sent to Jeffryhart96@gmail.com'; setTimeout(window.closeDeposit,2000); }
-    else { if(msg) msg.innerText=d.message||'Failed'; }
-  }catch{ if(msg) msg.innerText='Error, retry'; }
-}
-window.logout = function(){ localStorage.removeItem('ws_email'); currentUser=''; window.updateHeader(); window.showPage('home'); }
+
+function logout(){ localStorage.removeItem('ws_email'); currentUser=''; updateHeader(); showPage('home'); }
 
 document.addEventListener('DOMContentLoaded',()=>{
-  const da=document.getElementById('depAmount');
-  if(da) da.addEventListener('input', window.updateROI);
-  window.updateHeader();
-  window.updateROI();
-  window.showPage('home');
+ const da=document.getElementById('depAmount'); if(da) da.addEventListener('input',updateROI);
+ updateHeader(); updateROI(); showPage('home');
 });
 </script>
 </body>
