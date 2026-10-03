@@ -2,69 +2,105 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WealthSpring</title>
+<title>Wealthspring — Secure Your Financial Future</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>body{font-family:'Inter',sans-serif}</style>
+<style>body{font-family:Inter,sans-serif;background:#d9e6f8}.page{display:none}.page.active{display:block}</style>
 </head>
-<body class="bg-[#c9d9f5] min-h-screen flex flex-col">
-<!-- NAV - exactly like image -->
-<nav class="bg-[#1a365d] text-white px-6 lg:px-10 py-4 flex justify-between items-center">
+<body class="text-[#1a2744]">
+
+<header class="bg-[#131d36] text-white px-6 lg:px-10 py-4 flex justify-between items-center sticky top-0 z-50">
 <div class="flex items-center gap-8">
-<div class="flex items-center gap-2 font-bold text-2xl"><div class="w-8 h-8 bg-white/10 border border-green-400 rounded-lg flex items-center justify-center text-green-400">🌿</div> Wealthspring</div>
-<div class="hidden md:flex gap-6 text-sm text-white/70"><a class="text-white font-semibold border-b-2 border-white pb-1">Home</a><a href="#packages" class="hover:text-white">Packages</a><a class="hover:text-white">How it Works</a><a class="hover:text-white font-bold">FAQ</a><a class="hover:text-white">Contact</a></div>
-</div>
-<div class="flex gap-3"><button onclick="openModal('login')" class="px-5 py-2 rounded-lg border border-white/30 text-sm">Login</button><button onclick="openModal('register')" class="px-5 py-2 rounded-lg bg-[#2a9d8f] text-white text-sm font-semibold">Get Started</button></div>
+<div class="flex items-center gap-2 font-extrabold text-2xl"><div class="w-8 h-8 bg-green-500 rounded-md flex items-center justify-center">🌿</div>Wealthspring</div>
+<nav class="hidden md:flex gap-6 text-sm text-white/70">
+<a onclick="go('home')" id="n-home" class="text-white border-b-2 border-green-400 pb-1 cursor-pointer">Home</a>
+<a onclick="go('packages')" id="n-packages" class="cursor-pointer hover:text-white">Packages</a>
+<a onclick="go('how')" id="n-how" class="cursor-pointer hover:text-white">How it Works</a>
+<a onclick="go('faq')" id="n-faq" class="cursor-pointer hover:text-white">FAQ</a>
+<a onclick="go('contact')" id="n-contact" class="cursor-pointer hover:text-white">Contact</a>
 </nav>
+</div>
+<div class="flex gap-3"><button onclick="go('login')" class="px-5 py-2 rounded-lg border border-white/30 text-sm">Login</button><button onclick="go('register')" class="px-5 py-2 rounded-lg bg-green-600 text-white text-sm font-bold">Get Started</button></div>
+</header>
 
-<!-- LOGIN CARD - exactly like your screenshot -->
-<section class="flex-1 flex items-center justify-center p-6">
-<div class="bg-white w-full max-w-[480px] rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.1)] p-8 md:p-10">
-<h1 class="text-[36px] font-extrabold text-[#1a233f] text-center leading-none">Welcome Back</h1>
-<p class="text-center text-[#4a5568] mt-3 mb-8">Sign in to your Wealthspring account</p>
-
-<div class="space-y-5">
-<div><label class="text-sm font-bold text-[#1a233f]">Email address</label><div class="mt-2 relative"><span class="absolute left-3 top-3 text-gray-400">✉️</span><input id="logEmail" type="email" placeholder="you@example.com" class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:border-[#2a9d8f] outline-none text-sm"></div></div>
-<div><label class="text-sm font-bold text-[#1a233f]">Password</label><div class="mt-2 relative"><span class="absolute left-3 top-3 text-gray-400">🔒</span><input id="logPass" type="password" placeholder="••••••••" class="w-full pl-10 pr-10 py-3 rounded-lg border border-gray-300 focus:border-[#2a9d8f] outline-none text-sm"><span class="absolute right-3 top-3 text-gray-400">👁️</span></div></div>
-
-<div class="flex justify-between items-center text-sm"><label class="flex items-center gap-2"><input type="checkbox" class="rounded"> Remember me</label><a class="text-[#2a9d8f] font-medium cursor-pointer">Forgot password?</a></div>
-
-<button onclick="doLogin()" class="w-full py-3 bg-[#167a6b] hover:bg-[#125f53] text-white font-bold rounded-lg text-lg">Login</button>
-
-<p class="text-center text-sm text-gray-600">Don't have an account? <span onclick="openModal('register')" class="text-[#167a6b] font-bold cursor-pointer">Sign up</span></p>
-
-<div class="flex justify-center gap-5 pt-6 text-xs text-gray-700 font-medium border-t mt-6"><span class="flex items-center gap-1">🛡️ SSL Secure</span><span class="flex items-center gap-1">✅ Verified & Licensed</span><span class="flex items-center gap-1">💬 24/7 Support</span></div>
+<!-- HOME -->
+<div id="page-home" class="page active">
+<div class="max-w-7xl mx-auto px-6 py-16 grid lg:grid-cols-2 gap-12 items-center">
+<div>
+<h1 class="text-[56px] leading-[0.9] font-extrabold text-[#0f2040]">Secure Your<br>Financial Future</h1>
+<p class="mt-6 text-[#42506a] max-w-[500px]">Grow your wealth confidently with expert-managed investment portfolios. Start in minutes with low fees, transparent returns, and 100% secure asset protection.</p>
+<div class="mt-8 flex gap-4"><button onclick="go('register')" class="px-8 py-3.5 bg-green-600 text-white rounded-xl font-bold shadow">Start Investing</button><button onclick="go('how')" class="px-8 py-3.5 bg-white/50 border border-[#0f2040] text-[#0f2040] rounded-xl font-bold">Learn More</button></div>
+<div class="mt-10 flex gap-6 text-xs font-bold"><span>🛡️ Secure & Regulated</span><span>✅ Low Fees</span><span>📈 Proven Growth</span></div>
+</div>
+<div class="bg-white rounded-[28px] p-6 shadow-2xl border max-w-[460px] ml-auto">
+<div class="flex justify-between font-bold text-lg">Your Portfolio <span class="text-green-600">📈</span></div>
+<div class="mt-4 text-sm text-gray-500">Total Balance</div><div class="text-3xl font-extrabold">$12,450.82</div><div class="text-xs text-gray-400 mt-1">Demo — New users start at $0.00</div>
+<div class="bg-[#f0f7f0] rounded-xl p-4 mt-4"><svg viewBox="0 0 200 50" class="w-full h-12"><polyline fill="none" stroke="#16a34a" stroke-width="2.5" points="0,40 30,20 60,28 90,12 120,18 150,5 180,10 200,0"/></svg></div>
+<div class="flex gap-3 mt-4"><span class="bg-green-100 px-3 py-2 rounded-full text-[11px] font-bold">● Active Investments 4 Plans</span><span class="bg-green-100 px-3 py-2 rounded-full text-[11px] font-bold">🛡️ Secured 100%</span></div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-6 pb-20">
+<h2 class="text-2xl font-extrabold text-center">Investment Packages</h2>
+<div class="grid md:grid-cols-4 gap-4 mt-6">
+<div class="bg-white rounded-xl p-5 shadow border"><div class="text-[10px] font-bold">STARTER Entry</div><div class="font-extrabold text-xl mt-1">$100 – $499</div><div class="text-green-600 font-bold">5% ROI / 3 Days</div><button onclick="go('register')" class="w-full mt-4 py-2 bg-[#0f2040] text-white rounded-lg text-sm font-bold">Invest Now</button></div>
+<div class="bg-white rounded-xl p-5 shadow border-2 border-green-600"><div class="text-[10px] font-bold">GROWTH ⭐ Most Popular</div><div class="font-extrabold text-xl mt-1">$500 – $1,999</div><div class="text-green-600 font-bold">8% ROI / 3 Days</div><button onclick="go('register')" class="w-full mt-4 py-2 bg-green-600 text-white rounded-lg text-sm font-bold">Invest Now</button></div>
+<div class="bg-white rounded-xl p-5 shadow border"><div class="text-[10px] font-bold">PRO Best Value</div><div class="font-extrabold text-xl mt-1">$2,000 – $4,999</div><div class="text-green-600 font-bold">12% ROI / 3 Days</div><button onclick="go('register')" class="w-full mt-4 py-2 bg-[#0f2040] text-white rounded-lg text-sm font-bold">Invest Now</button></div>
+<div class="bg-white rounded-xl p-5 shadow border"><div class="text-[10px] font-bold">ELITE Elite</div><div class="font-extrabold text-xl mt-1">$5,000+</div><div class="text-green-600 font-bold">18% ROI / 3 Days</div><button onclick="go('register')" class="w-full mt-4 py-2 bg-[#0f2040] text-white rounded-lg text-sm font-bold">Invest Now</button></div>
+</div>
+</div>
 </div>
 
-<!-- hidden forms for register/deposit that show in same card style -->
-<div id="registerForm" class="hidden mt-8 border-t pt-8"><h3 class="font-bold text-xl text-[#1a233f] text-center">Create Account</h3><input id="regEmail" placeholder="Email" class="w-full mt-4 p-3 rounded-lg border border-gray-300"><input id="regPass" type="password" placeholder="Password" class="w-full mt-3 p-3 rounded-lg border border-gray-300"><button onclick="doRegister()" class="w-full mt-4 py-3 bg-[#167a6b] text-white font-bold rounded-lg">Create Account</button><p onclick="openModal('login')" class="text-center text-sm mt-3 text-[#167a6b] cursor-pointer">Back to Login</p></div>
-
-<div id="depositForm" class="hidden mt-8 border-t pt-8"><h3 class="font-bold text-xl text-center">Make Deposit</h3><div class="bg-[#f7fafc] p-4 rounded-lg text-xs break-all mt-4 border"><p class="text-gray-500">BTC</p><p class="font-bold text-[#1a365d]">bc1qmww3778u3w409wjthpp5gyqjxj9fesqcq8maez</p><p class="text-gray-500 mt-2">USDT BEP20</p><p class="font-bold text-[#1a365d]">0xcF1e36b4c1666f42F34A8616FAe80Fc30440F8D9</p></div><input id="depAmount" placeholder="Amount" class="w-full mt-3 p-3 rounded-lg border"><select id="depMethod" class="w-full mt-3 p-3 rounded-lg border bg-white"><option value="btc">BTC</option><option value="usdt_bep20">USDT BEP20</option></select><input id="depTx" placeholder="TX ID" class="w-full mt-3 p-3 rounded-lg border"><button onclick="doDeposit()" class="w-full mt-3 py-3 bg-[#167a6b] text-white font-bold rounded-lg">Submit Deposit</button><p class="text-xs text-center text-gray-400 mt-2">Support: support@wealthspringassets.com</p></div>
-
-<p id="msg" class="mt-4 text-center text-sm font-bold"></p>
+<!-- PACKAGES / DASHBOARD - NOW $0 FOR NEW USERS -->
+<div id="page-packages" class="page max-w-7xl mx-auto px-6 py-8">
+<div class="bg-white rounded-2xl p-6 shadow">
+<div class="flex justify-between"><div><h2 class="text-3xl font-extrabold">Invest</h2><p class="text-sm text-gray-600">Fund your investment and grow your wealth in just 3 days</p></div><div class="text-xs bg-green-50 border border-green-200 px-3 py-1 rounded-full">🟢 Logged in as <span id="userEmailShow">Guest</span></div></div>
+<div class="grid lg:grid-cols-3 gap-6 mt-6">
+<div class="lg:col-span-2">
+<div class="bg-[#f0f6ff] border rounded-xl p-4"><div class="text-xs text-gray-600">Available Balance</div><div class="text-2xl font-extrabold" id="balDisplay">$0.00</div><div class="text-xs text-green-600" id="balSub">No deposits yet — deposit to start</div></div>
+<div class="grid md:grid-cols-4 gap-3 mt-4">
+<div onclick="pick(100,5)" class="bg-white border p-4 rounded-xl cursor-pointer hover:border-green-600"><div class="text-[10px] font-bold">STARTER</div><div class="font-bold mt-1">$100-499</div><div class="text-green-600 text-sm font-bold">5% ROI</div></div>
+<div onclick="pick(500,8)" class="bg-white border-2 border-green-600 p-4 rounded-xl cursor-pointer"><div class="text-[10px] font-bold">GROWTH Popular</div><div class="font-bold mt-1">$500-1999</div><div class="text-green-600 text-sm font-bold">8% ROI</div></div>
+<div onclick="pick(2000,12)" class="bg-white border p-4 rounded-xl cursor-pointer"><div class="text-[10px] font-bold">PRO</div><div class="font-bold mt-1">$2000-4999</div><div class="text-green-600 text-sm font-bold">12% ROI</div></div>
+<div onclick="pick(5000,18)" class="bg-white border p-4 rounded-xl cursor-pointer"><div class="text-[10px] font-bold">ELITE</div><div class="font-bold mt-1">$5000+</div><div class="text-green-600 text-sm font-bold">18% ROI</div></div>
 </div>
-</section>
+<div class="bg-white border rounded-xl p-5 mt-4">
+<h4 class="font-bold">Investment Details</h4>
+<label class="text-xs mt-3 block">Amount (USD)</label><input id="invAmt" value="500" class="w-full border p-2.5 rounded-lg mt-1">
+<div class="bg-green-50 p-3 rounded-lg mt-3 flex justify-between text-sm font-bold"><span>Estimated ROI (<span id="roiP">8%</span>)</span><span class="text-green-600">+<span id="roiV">$40.00</span></span></div>
+<div class="mt-4 text-sm font-bold">Deposit to Wallet</div>
+<div class="bg-slate-100 p-3 rounded-lg mt-2 text-xs break-all"><p>BTC: <b>bc1qmww3778u3w409wjthpp5gyqjxj9fesqcq8maez</b></p><p class="mt-2">USDT BEP20: <b>0xcF1e36b4c1666f42F34A8616FAe80Fc30440F8D9</b></p></div>
+</div>
+</div>
+<div class="bg-white border rounded-xl p-5 h-fit">
+<h4 class="font-bold">Proof of Payment</h4>
+<div class="border-2 border-dashed border-green-600 rounded-xl p-5 text-center mt-4"><div>☁️ Upload TX Proof</div><input id="txInput" placeholder="Paste Transaction ID / Hash" class="w-full mt-3 border p-2.5 rounded-lg text-xs"><div id="upOk" class="hidden text-green-600 text-xs mt-2">✅ Ready to submit</div></div>
+<button onclick="doDeposit()" class="w-full mt-4 bg-green-600 text-white py-3 rounded-xl font-bold">Confirm Investment</button>
+<p id="msg" class="text-center text-sm font-bold mt-3"></p>
+<p class="text-[10px] text-center mt-2 text-gray-500">Balance remains $0 until admin approves deposit</p>
+</div>
+</div>
+</div>
+</div>
 
-<!-- Packages section in same light theme -->
-<section id="packages" class="max-w-6xl mx-auto px-6 pb-10 grid md:grid-cols-3 gap-6">
-<div class="bg-white p-7 rounded-2xl shadow"><h3 class="font-bold">Starter</h3><div class="text-3xl font-extrabold mt-2">$100-$999</div><div class="text-[#167a6b] mt-1 font-bold">15% Weekly</div><button onclick="startInvest('Starter',100)" class="w-full mt-5 py-3 bg-[#1a365d] text-white rounded-lg font-bold">Invest</button></div>
-<div class="bg-[#1a365d] text-white p-7 rounded-2xl shadow"><h3 class="font-bold">Growth</h3><div class="text-3xl font-extrabold mt-2">$1k-$4,999</div><div class="mt-1 font-bold">25% Weekly</div><button onclick="startInvest('Growth',1000)" class="w-full mt-5 py-3 bg-white text-[#1a365d] rounded-lg font-bold">Invest</button></div>
-<div class="bg-white p-7 rounded-2xl shadow"><h3 class="font-bold">Premium</h3><div class="text-3xl font-extrabold mt-2">$5,000+</div><div class="text-[#167a6b] mt-1 font-bold">40% Weekly</div><button onclick="startInvest('Premium',5000)" class="w-full mt-5 py-3 bg-[#1a365d] text-white rounded-lg font-bold">Invest</button></div>
-</section>
+<div id="page-faq" class="page max-w-3xl mx-auto px-6 py-12"><h2 class="text-4xl font-extrabold text-center">FAQ</h2><div class="bg-white p-5 rounded-xl shadow mt-6"><b>What is Wealthspring?</b><p class="text-sm mt-2 text-gray-600">Secure platform, $0 start, deposit crypto, earn 5-18% in 3 days.</p></div></div>
+<div id="page-contact" class="page max-w-3xl mx-auto px-6 py-12"><h2 class="text-4xl font-extrabold text-center">Contact Us</h2><div class="bg-white p-6 rounded-xl shadow mt-6"><p class="text-sm">📧 support@wealthspring.com</p></div></div>
+<div id="page-how" class="page max-w-3xl mx-auto px-6 py-12 text-center"><h2 class="text-3xl font-extrabold">How it Works</h2><p class="mt-4">1. Register → 2. Dashboard $0 → 3. Deposit BTC/USDT → 4. Submit TX → 5. Admin approves → 6. Balance updates → 7. ROI after 3 days → 8. Withdraw</p></div>
 
-<footer class="bg-[#e8edf5] text-xs text-gray-600 px-6 py-4 flex flex-col md:flex-row justify-between gap-2">
-<span>Wealthspring © 2024 • All rights reserved</span>
-<span class="text-center">Risk Disclosure: Investments carry risk. Past performance is not indicative of future results.</span>
-<span class="flex gap-4">🔒 SSL Secure ✅ Verified & Licensed 📞 24/7 Support</span>
-</footer>
+<div id="page-login" class="page max-w-md mx-auto py-16 px-6"><div class="bg-white rounded-2xl shadow-xl p-8"><h1 class="text-3xl font-extrabold text-center">Welcome Back</h1><input id="logEmail" placeholder="Email" class="w-full mt-6 border p-3.5 rounded-lg"><input id="logPass" type="password" placeholder="Password" class="w-full mt-3 border p-3.5 rounded-lg"><button onclick="doLogin()" class="w-full mt-5 bg-[#0f766e] text-white py-3.5 rounded-lg font-bold">Login</button></div></div>
+<div id="page-register" class="page max-w-md mx-auto py-16 px-6"><div class="bg-white rounded-2xl shadow-xl p-8"><h1 class="text-3xl font-extrabold text-center">Create Account</h1><input id="regEmail" placeholder="Email" class="w-full mt-6 border p-3.5 rounded-lg"><input id="regPass" type="password" placeholder="Password" class="w-full mt-3 border p-3.5 rounded-lg"><button onclick="doRegister()" class="w-full mt-5 bg-green-600 text-white py-3.5 rounded-lg font-bold">Create Account</button><p id="msg2" class="text-center text-sm font-bold mt-3"></p></div></div>
+
+<footer class="bg-[#eef2f7] text-[11px] text-gray-600 px-6 py-4 flex justify-between mt-10"><span>Wealthspring © 2024</span><span>Risk Disclosure: Investments carry risk.</span><span>🔒 SSL Secure</span></footer>
 
 <script>
-const API='https://wealthspring-backend.onrender.com';let currentUser=localStorage.getItem('ws_email')||'';
-function openModal(t){document.getElementById('registerForm').classList.add('hidden');document.getElementById('depositForm').classList.add('hidden');if(t==='register')document.getElementById('registerForm').classList.remove('hidden');if(t==='deposit')document.getElementById('depositForm').classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'})}
-function startInvest(p,a){if(!currentUser){openModal('register');return}document.getElementById('depAmount').value=a;openModal('deposit')}
-async function doRegister(){const email=document.getElementById('regEmail').value;const password=document.getElementById('regPass').value;const msg=document.getElementById('msg');msg.innerText='Creating...';try{const r=await fetch(API+'/api/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});const d=await r.json();if(d.error){msg.innerText=d.error;return}localStorage.setItem('ws_email',email);currentUser=email;msg.innerText='Created!';setTimeout(()=>openModal('deposit'),800)}catch(e){msg.innerText='Backend waking, try again in 20s'}}
-async function doLogin(){const email=document.getElementById('logEmail').value;const password=document.getElementById('logPass').value;const msg=document.getElementById('msg');try{const r=await fetch(API+'/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});const d=await r.json();if(d.error){msg.innerText=d.error;return}localStorage.setItem('ws_email',email);currentUser=email;msg.innerText='Logged in!';setTimeout(()=>openModal('deposit'),800)}catch(e){msg.innerText='Error, try again'}}
-async function doDeposit(){const amount=document.getElementById('depAmount').value;const method=document.getElementById('depMethod').value;const txId=document.getElementById('depTx').value;const email=currentUser;const msg=document.getElementById('msg');if(!amount||!txId){msg.innerText='Enter amount and TX';return}try{await fetch(API+'/api/deposit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,amount,method,txId})});msg.innerText='Deposit submitted! Admin will approve.'}catch(e){msg.innerText='Error'}}
+const API='https://wealthspring-backend.onrender.com';let curROI=8;let curUser=localStorage.getItem('ws_email')||'';
+function go(p){document.querySelectorAll('.page').forEach(e=>e.classList.remove('active'));document.getElementById('page-'+p).classList.add('active');let n=document.getElementById('n-'+p);if(n){document.querySelectorAll('header nav a').forEach(a=>a.className='cursor-pointer hover:text-white');n.className='text-white border-b-2 border-green-400 pb-1 cursor-pointer'}window.scrollTo(0,0);if(p=='packages'){loadBal()}}
+function pick(amt,roi){document.getElementById('invAmt').value=amt;curROI=roi;document.getElementById('roiP').innerText=roi+'%';calc()}
+function calc(){let a=parseFloat(document.getElementById('invAmt').value||0);document.getElementById('roiV').innerText='$'+(a*curROI/100).toFixed(2)}document.getElementById('invAmt')?.addEventListener('input',calc)
+async function doRegister(){let e=document.getElementById('regEmail').value,p=document.getElementById('regPass').value,m=document.getElementById('msg2');m.innerText='Creating...';try{let r=await fetch(API+'/api/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e,password:p})});let d=await r.json();if(d.error){m.innerText=d.error;return}localStorage.setItem('ws_email',e);curUser=e;document.getElementById('userEmailShow').innerText=e;document.getElementById('balDisplay').innerText='$0.00';document.getElementById('balSub').innerText='No deposits yet — deposit to start';go('packages')}catch{m.innerText='Backend waking, try again 20s'}}
+async function doLogin(){let e=document.getElementById('logEmail').value,p=document.getElementById('logPass').value;try{let r=await fetch(API+'/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e,password:p})});let d=await r.json();if(d.error){alert(d.error);return}localStorage.setItem('ws_email',e);curUser=e;document.getElementById('userEmailShow').innerText=e;go('packages')}catch{alert('Error')}}
+async function loadBal(){let email=curUser||localStorage.getItem('ws_email');if(!email)return;document.getElementById('userEmailShow').innerText=email;try{let r=await fetch(API+'/api/balance?email='+email);let d=await r.json();if(d.balance!==undefined){document.getElementById('balDisplay').innerText='$'+parseFloat(d.balance).toFixed(2);document.getElementById('balSub').innerText=d.balance>0?'+'+d.profit+' this cycle':'No deposits yet'}}catch{}}
+async function doDeposit(){let amt=document.getElementById('invAmt').value,tx=document.getElementById('txInput').value,email=curUser||localStorage.getItem('ws_email'),msg=document.getElementById('msg');if(!email){msg.innerText='Login first';go('login');return}if(!tx){msg.innerText='Paste TX ID';return}msg.innerText='Submitting...';try{await fetch(API+'/api/deposit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,amount:amt,method:'btc',txId:tx})});msg.innerText='Deposit submitted! Balance will update after approval. Still $0 for now.';document.getElementById('upOk').classList.remove('hidden')}catch{msg.innerText='Error - try again'}}
+if(curUser){document.getElementById('userEmailShow').innerText=curUser}
 </script>
 </body>
 </html>
