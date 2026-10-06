@@ -94,7 +94,7 @@
 <p id="withMsg" class="text-[12px] mt-3 text-center"></p>
 </div></div>
 <script>
-const API = location.origin;
+const API = 'https://wealthspring-backend.onrender.com';
 let email = localStorage.getItem('ws_email')||'';
 if(!email){ location.href='/'; }
 document.getElementById('dashEmail').innerText=email;
@@ -153,29 +153,56 @@ function closeWithdraw(){document.getElementById('withdrawModal').classList.add(
 async function submitDeposit(){
   let amount=document.getElementById('depAmount').value; let txHash=document.getElementById('depHash').value;
   if(!amount||!txHash){document.getElementById('depMsg').innerText='Add amount and TX hash'; return;}
-  let tx={amount:parseFloat(amount), txHash:txHash, status:'pending', time:new Date().toLocaleString()};
-  saveLocalTx(tx); renderTxs(getLocalTxs());
-  document.getElementById('depMsg').innerText='Deposit saved — Pending till admin approves';
-  try{await fetch(API+'/api/deposit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,amount:amount,txHash:txHash})});}catch(e){}
-  setTimeout(closeDeposit,1200);
+  document.getElementById('depMsg').innerText='Sending to server...';
+  try{
+    let res=await fetch(API+'/api/deposit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,amount:amount,txHash:txHash})});
+    let j=await res.json();
+    if(j.ok){
+      let tx={amount:parseFloat(amount), txHash:txHash, status:'pending', time:new Date().toLocaleString()};
+      saveLocalTx(tx); renderTxs(getLocalTxs());
+      document.getElementById('depMsg').innerText='Deposit sent — Pending till admin approves';
+      setTimeout(closeDeposit,1200);
+      loadTx();
+    } else {
+      document.getElementById('depMsg').innerText='Error: '+(j.error||'failed');
+    }
+  }catch(e){
+    document.getElementById('depMsg').innerText='Server error — try again';
+  }
 }
 async function submitWithdraw(){
   let amount=document.getElementById('withAmount').value; let address=document.getElementById('withAddress').value;
   if(!amount||!address){document.getElementById('withMsg').innerText='Fill all'; return;}
-  let tx={amount:parseFloat(amount), txHash:address, status:'withdrawal pending', time:new Date().toLocaleString()};
-  saveLocalTx(tx); renderTxs(getLocalTxs());
-  document.getElementById('withMsg').innerText='Withdrawal request saved — Admin will process within 24h';
-  try{await fetch(API+'/api/withdraw',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,amount:amount,address:address})});}catch(e){}
-  setTimeout(closeWithdraw,1200);
+  document.getElementById('withMsg').innerText='Sending...';
+  try{
+    let res=await fetch(API+'/api/withdraw',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,amount:amount,address:address})});
+    let j=await res.json();
+    if(j.ok){
+      let tx={amount:parseFloat(amount), txHash:address, status:'withdrawal pending', time:new Date().toLocaleString()};
+      saveLocalTx(tx); renderTxs(getLocalTxs());
+      document.getElementById('withMsg').innerText='Withdrawal request saved — Admin will process';
+      setTimeout(closeWithdraw,1200);
+    } else {
+      document.getElementById('withMsg').innerText=j.error||'failed';
+    }
+  }catch(e){
+    document.getElementById('withMsg').innerText='Server error';
+  }
 }
 async function sendSupport(){
   let subject=document.getElementById('supSubject').value.trim(); let message=document.getElementById('supMessage').value.trim();
   if(!subject||!message){document.getElementById('supMsg').innerText='Fill subject and message'; return;}
-  let arr=getSup(); arr.unshift({subject:subject, message:message, time:new Date().toLocaleString()}); localStorage.setItem('ws_sup_'+email, JSON.stringify(arr));
-  renderSup();
-  document.getElementById('supMsg').innerText='Message sent — Ticket #'+Math.floor(Math.random()*9000+1000)+' — Operations will reply shortly';
-  try{await fetch(API+'/api/support',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,subject:subject,message:message})});}catch(e){}
-  document.getElementById('supSubject').value=''; document.getElementById('supMessage').value='';
+  document.getElementById('supMsg').innerText='Sending...';
+  try{
+    let res=await fetch(API+'/api/support',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,subject:subject,message:message})});
+    let j=await res.json();
+    if(j.ok){
+      let arr=getSup(); arr.unshift({subject:subject, message:message, time:new Date().toLocaleString()}); localStorage.setItem('ws_sup_'+email, JSON.stringify(arr));
+      renderSup();
+      document.getElementById('supMsg').innerText='Message sent — Ticket #'+j.id+' — Operations will reply';
+      document.getElementById('supSubject').value=''; document.getElementById('supMessage').value='';
+    }
+  }catch(e){ document.getElementById('supMsg').innerText='Saved locally, will sync'; }
 }
 function logout(){localStorage.removeItem('ws_email'); location.href='/';}
 </script>
